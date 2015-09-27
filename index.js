@@ -1,4 +1,5 @@
 var Parsoid = require('parsoid');
+var languages = require("./lib/languages");
 
 var ls = {
 	setup: function(pc) {
