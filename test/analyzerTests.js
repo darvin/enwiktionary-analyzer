@@ -47,6 +47,7 @@ describe('wiktionary parser', function() {
         });
     		it('should have etymology', function() {
           expect(m).to.have.property("etymology");
+          expect(m.etymology).to.eql({});
         });
     		it('should have 2 roles', function() {
           expect(m).to.have.property("roles");
