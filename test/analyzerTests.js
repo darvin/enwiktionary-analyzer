@@ -4,6 +4,7 @@ var expect = require('chai').expect;
 var wiktParser = require('../');
 var path = require('path');
 var fs = require('fs');
+var prettyjson = require('prettyjson');
 
 
 describe('wiktionary parser', function() {
@@ -15,6 +16,7 @@ describe('wiktionary parser', function() {
 			var wikitext = fs.readFileSync(path.join(__dirname,"fixtures", "test.wiki"), {encoding:'utf8'});
 
       wiktParser.parse(wikitext, function(err, result) {
+        console.log(prettyjson.render(result));  
         r = result;
         done(err);
       });	  
@@ -71,6 +73,7 @@ describe('wiktionary parser', function() {
 			var wikitext = fs.readFileSync(path.join(__dirname,"fixtures", "sample.wiki"), {encoding:'utf8'});
 
       wiktParser.parse(wikitext, function(err, result) {
+        console.log(prettyjson.render(result));  
         r = result;
         done(err);
       });   

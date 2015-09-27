@@ -1,4 +1,5 @@
 var Parsoid = require('parsoid');
+
 var languages = require("./lib/languages");
 
 var ls = {
@@ -97,12 +98,12 @@ function parseEtymology(pdoc) {
 				}
 				var term = parseTerm(e);
 				result.from.push(term);
-				console.log("							term: ", result);
+				// console.log("							term: ", result);
 
 			}
 		}
 	}
-	console.log("Etymology: ", result);
+	// console.log("Etymology: ", result);
 	return result;
 
 }
@@ -139,7 +140,7 @@ module.exports.parse = function(wikitext, callback) {
 					currentHeadingLevel = heading.level;
 					if (heading.level==2) {
 						currentLanguage = languageAnyNameToName(headingString);
-						console.log("found language ", currentLanguage);
+						// console.log("found language ", currentLanguage);
 						currentLanguageContents = {
 							meanings: [],
 						};
@@ -147,8 +148,8 @@ module.exports.parse = function(wikitext, callback) {
 					}
 
 					if (heading.level==3 && headingString.match(/Etymology.*/)) {
-						console.log("  found meaning ", headingString);
-						console.log(heading.pnodes);
+						// console.log("  found meaning ", headingString);
+						// console.log(heading.pnodes);
 						currentMeaningContents = {
 							etymology:{},
 							roles:[],
@@ -157,7 +158,7 @@ module.exports.parse = function(wikitext, callback) {
 					}
 
 					if ((heading.level==3||heading.level==4)&&isRole(headingString)) {
-						console.log("    found role ", headingString);
+						// console.log("    found role ", headingString);
 
 						currentMeaningContents.roles.push({
 							role:normalizeRole(headingString)
@@ -174,7 +175,7 @@ module.exports.parse = function(wikitext, callback) {
 				
 
 			}
-			console.log(result);
+			// console.log(result);
 			callback(null, result);
 		}).done();
 }
