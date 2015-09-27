@@ -26,7 +26,7 @@ describe('wiktionary parser', function() {
     describe('parsed english word', function() {
     	var w = null;
     	before(function() {
-    		w = r["eng"];
+    		w = r["en"];
     	});
     	it('should have 2 meanings');
     	describe('meaning 1', function() {
@@ -62,9 +62,11 @@ describe('wiktionary parser', function() {
     describe('parsed english word', function() {
     	var w = null;
     	before(function() {
-    		w = r["eng"];
+    		w = r["en"];
     	});
-    	it('should have 1 meaning');
+    	it('should have 1 meaning', function() {
+        expect(w).to.be.ok;
+      });
     	describe('meaning 1', function() {
     		it('should have noun role');
     	});
