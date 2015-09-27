@@ -34,7 +34,10 @@ describe('wiktionary parser', function() {
     	before(function() {
     		w = r["en"];
     	});
-    	it('should have 2 meanings');
+    	it('should have 2 meanings', function() {
+        expect(w.meanings).to.be.ok;
+        expect(w.meanings.length).to.be.equal(1);
+      });
     	describe('meaning 1', function() {
     		it('should have etymology');
     		it('should have noun role');
@@ -71,7 +74,8 @@ describe('wiktionary parser', function() {
     		w = r["en"];
     	});
     	it('should have 1 meaning', function() {
-        expect(w).to.be.ok;
+        expect(w.meanings).to.be.ok;
+        expect(w.meanings.length).to.be.equal(1);
       });
     	describe('meaning 1', function() {
     		it('should have noun role');
