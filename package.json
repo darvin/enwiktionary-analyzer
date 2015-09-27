@@ -1,0 +1,14 @@
+{
+  "name": "enwiktionary-analyzer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parsoid": "^0.4.0"
+  }
+}

@@ -1,0 +1,186 @@
+{{also|SAMPLE}}
+==English==
+
+===Etymology===
+From {{etyl|enm|en}} {{m|enm|sample}}, {{m|enm|asaumple}}, from {{etyl|fro|en}} {{m|fro|essample||example}}, from {{etyl|la|en}} {{m|la|exemplum}}.
+
+===Pronunciation===
+* {{rhymes|æmpəl|lang=en}}
+* {{a|RP}} {{IPA|/ˈsɑːm.pəl/|lang=en}}
+* {{rhymes|ɑːmpəl|lang=en}}
+* {{a|US}} {{IPA|/ˈsæm.pəl/|lang=en}}
+
+===Noun===
+{{en-noun}}
+
+# A [[part]] of anything taken or presented for inspection, or shown as evidence of the quality of the whole; a [[specimen]]; as, goods are often purchased by samples.
+#: ''"I design this but for a sample of what I hope more fully to discuss."  -Woodward.''
+# {{context|statistics|lang=en}} A subset of a [[population]] selected for measurement, observation or questioning, to provide statistical information about the population.
+#: ''"...it is possible it [the Anglo-Saxon race] might stand second to the Scandinavian countries [in average height] if a fair '''sample''' of their population were obtained." Francis Galton et al. (1883). Final Report of the Anthropometric Committee, Report of the British Association for the Advancement of Science, [http://galton.org/cgi-bin/searchImages/galton/search/essays/pages/galton-1883-rba-anthro-report-final_14.htm p. 269].''
+# {{context|cooking|lang=en}} a small piece of food for tasting, typically given away for free
+# {{context|business|lang=en}} a small piece of some goods, for determining quality, colour, etc., typically given away for free
+# {{context|music|lang=en}} Gratuitous borrowing of easily recognised phases (or moments) from other music (or movies) in a recording, used to emphasize a particular point by implying a certain context.
+# {{context|obsolete|lang=en}} [[example|Example]]; [[pattern]].
+#* Shakespeare
+#*: a '''sample''' to the youngest
+#* Fairfax
+#*: Thus he concludes, and every hardy knight / His '''sample''' followed.
+
+====Synonyms====
+* [[specimen]]
+* [[example]]
+
+====Hyponyms====
+* [[product sample]]
+
+====Translations====
+{{trans-top|part taken for inspection}}
+* Arabic: {{t|ar|عَيِّنَة|f}}
+* Azeri: {{t|az|nümunə}}
+* Baluchi: {{t|bal|نمونہ|tr=namuna}}
+* Basque: {{t|eu|lagin}}
+* Belarusian: {{t|be|узо́р|m|sc=Cyrl}}
+* Catalan: {{t+|ca|mostra|f}}
+* Chinese:
+*: Mandarin: {{t|cmn|樣品|sc=Hani}}, {{t+|cmn|样品|tr=yàngpǐn|sc=Hani}}, {{t|cmn|樣本|sc=Hani}}, {{t+|cmn|样本|tr=yàngběn|sc=Hani}}
+* Czech: {{t|cs|vzorek|m}}
+* Dutch: {{t+|nl|monster|n}}
+* Esperanto: {{t|eo|prov-ekzemplero}}, {{t|eo|specimeno}}
+* Finnish: {{t+|fi|näyte}}
+* French: {{t+|fr|échantillon|m}}, {{t+|fr|extrait|m}}, {{t+|fr|exemple|m}}
+* German: {{t+|de|Probe|f}}, {{t+|de|Muster|n}}
+* Greek: {{t+|el|δείγμα|n}}
+* Hindi: {{t|hi|नमूना|m|tr=namūna|sc=Deva}}
+{{trans-mid}}
+* Hungarian: {{t+|hu|minta}}
+* Irish: {{t|ga|tástáil|f}}
+* Italian: {{t+|it|campione|m}}
+* Japanese: {{t|ja|見本|tr=みほん, mihon|sc=Jpan}}, {{t+|ja|サンプル|tr=sanpuru|sc=Jpan}}
+* Korean: {{t+|ko|견본|sc=Kore}}
+* Latin: {{t|la|exemplum|n}}
+* Maori: {{t|mi|pota}}
+* Norwegian: {{t+|no|prøve|m}} (1), {{t|no|sample|n}} (2), {{t+|no|eksempel|n}} (3)
+* Persian: {{t+|fa|نمونه|tr=nemune, nomune|sc=fa-Arab}}, {{t+|fa|اشانتیون|tr=ešântiyon|sc=fa-Arab}}
+* Portuguese: {{t+|pt|amostra|f}}
+* Romanian: {{t+|ro|mostră|f}}
+* Russian: {{t+|ru|образе́ц|m}}, {{t+|ru|про́ба|f}}, {{t+|ru|экземпля́р|m|tr=ekzɛmpljár}}
+* Scottish Gaelic: {{t|gd|sampall|m}}
+* Spanish: {{t+|es|muestra|f}}, {{t+|es|ejemplar|m}}
+* Swedish: {{t|sv|stickprov}}, {{t|sv|provbit|c}}
+* Tajik: {{t|tg|намуна‍|tr=namuna|sc=Cyrl}}
+* Turkish: {{t+|tr|örnek}}
+{{trans-bottom}}
+{{trans-top|statistics}}
+* Catalan: {{t+|ca|mostra|f}}
+* Finnish: {{t+|fi|otos}}
+* Italian: {{t+|it|campione|m}}
+{{trans-mid}}
+* Polish: {{t+|pl|próba|f}}
+* Spanish: {{t+|es|muestra|f}}
+* Swedish: {{t|sv|stickprov|n}}, {{t+|sv|urval|n}}
+{{trans-bottom}}
+{{trans-top|cooking}}
+* Catalan: {{t|ca|tast|m}}
+* Finnish: {{t+|fi|maistiainen}}
+* Italian: {{t+|it|assaggio|m}}
+{{trans-mid}}
+* Spanish: {{t+|es|prueba|f}}
+* Swedish: {{t|sv|smakbit|c}}, {{t|sv|provsmakning|c}}, {{t|sv|försmak|c}}, {{t|sv|smakprov|n}}
+{{trans-bottom}}
+{{trans-top|business}}
+* Finnish: {{t+|fi|näyte}}
+* Italian: {{t+|it|campione|m}}
+{{trans-mid}}
+* Swedish: {{t+|sv|prov|n}}, {{t|sv|varuprov|n}}, {{t|sv|gratisprov|n}}
+{{trans-bottom}}
+{{trans-top|music}}
+{{trans-mid}}
+* Russian: {{t+|ru|семпл|m|sc=Cyrl}}
+{{trans-bottom}}
+
+===Verb===
+{{en-verb|samples|sampling|sampled}}
+
+# {{context|transitive|lang=en}} To make or show something similar to; to match.
+# {{context|transitive|lang=en}} To take or to test a sample or samples of; as, to sample sugar, teas, wool, cloth.
+# {{context|transitive|signal processing|lang=en}} To reduce a [[continuous]] [[signal]] (such as a sound wave) to a [[discrete]] signal.
+# {{context|transitive|lang=en}} To reuse a portion of (an existing sound recording) in a new song.
+
+====Translations====
+{{trans-top|to make or show something similar to}}
+* Finnish: {{t|fi|[[tehdä]] [[samanlainen]]}}, {{t|fi|[[näyttää]] samanlainen}}
+{{trans-mid}}
+{{trans-bottom}}
+
+{{trans-top|to take or to test a sample or samples of}}
+* Chinese:
+*: Mandarin: {{t|cmn|嘗試|sc=Hani}}, {{t+|cmn|尝试|tr=chángshì|sc=Hani}}, {{t+|cmn|試|sc=Hani}}, {{t+|cmn|试|tr=shì|sc=Hani}}
+* Czech: {{t|cs|vzorkovat}}
+* Finnish: {{t|fi|[[ottaa]] [[näyte]]}}, {{t|fi|[[ottaa]] [[näytteitä]]}}
+* French: {{t+|fr|échantillonner}}, {{t+|fr|goûter}} {{qualifier|food}}
+* German: {{t+|de|probieren}}, {{t+|de|kosten}} {{qualifier|food}}
+* Greek: {{t|el|δειγματίζω}}
+* Haitian Creole: {{t|ht|echantiyon}}
+{{trans-mid}}
+* Italian: {{t+|it|campionare}}
+* Japanese: {{t|ja|試す|tr=ためす, tamesu|sc=Jpan}}
+* Norwegian: {{t|no|ta prøve av}}
+* Portuguese: {{t+|pt|provar}}, {{t+|pt|amostrar}}
+* Russian: {{t+|ru|про́бовать|impf}}, {{t+|ru|попро́бовать|pf}}
+* Sorbian:
+*: Lower Sorbian: {{t|dsb|proběrowaś|impf}}
+* Spanish: {{t|es|samplear}}, {{t+|es|muestrear}}
+* Thai: {{t+|th|ลอง|tr=long|sc=Thai}}
+* Turkish: {{t+|tr|örneklem}}
+{{trans-bottom}}
+
+{{trans-top|signal processing: to reduce a continuous signal to a discrete signal}}
+{{trans-mid}}
+{{trans-bottom}}
+
+{{trans-top|music: to reuse a portion of an existing recording}}
+* Finnish: {{t|fi|sämplätä}}
+{{trans-mid}}
+* Russian: {{t+|ru|семплировать|impf|pf|sc=Cyrl}}
+{{trans-bottom}}
+
+===Anagrams===
+* [[maples#English|maples]]
+
+[[ca:sample]]
+[[cs:sample]]
+[[cy:sample]]
+[[de:sample]]
+[[et:sample]]
+[[el:sample]]
+[[eo:sample]]
+[[eu:sample]]
+[[fa:sample]]
+[[fr:sample]]
+[[ko:sample]]
+[[hy:sample]]
+[[hi:sample]]
+[[io:sample]]
+[[it:sample]]
+[[kn:sample]]
+[[kk:sample]]
+[[ku:sample]]
+[[lo:sample]]
+[[hu:sample]]
+[[mg:sample]]
+[[ml:sample]]
+[[my:sample]]
+[[nl:sample]]
+[[ja:sample]]
+[[pl:sample]]
+[[pt:sample]]
+[[ru:sample]]
+[[simple:sample]]
+[[fi:sample]]
+[[sv:sample]]
+[[ta:sample]]
+[[te:sample]]
+[[chr:sample]]
+[[tr:sample]]
+[[vi:sample]]
+[[zh:sample]]
