@@ -45,15 +45,16 @@ function normalizeRole(role) {
 
 
 
-/* templates to process:
+//  templates to process:
 
-{{sense|an oath or affirmation}} 
+// {{sense|an oath or affirmation}} 
 
-{{l|cs|háček}} - link
-{{m|la|*tersa||dry land}} - mention
-{{term|test|lang=fro||an earthen vessel}}
+// {{l|cs|háček}} - link
+// {{m|la|*tersa||dry land}} - mention
+// {{term|test|lang=fro||an earthen vessel}}
 
-{{t|ast|prueba|f}} - translation
+// {{t|ast|prueba|f}} - translation
+// {{t+|sw|jaribio}}
 
 
 module.exports.parse = function(wikitext, callback) {
