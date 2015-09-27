@@ -25,7 +25,6 @@ module.exports.parse = function(wikitext, callback) {
 			config: ls
 		}).then(function(pdoc) {
 		console.log("DONE!");
-		console.log(pdoc);
 			String(pdoc).should.equal(text);
 			var templates = pdoc.filterTemplates();
 			templates.length.should.equal(1);
