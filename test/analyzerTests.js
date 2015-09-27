@@ -22,7 +22,9 @@ describe('wiktionary parser', function() {
     it('should parse wiki', function () {
       expect(r).to.be.ok;
     });
-    it('should have multiple languages');
+    it('should have multiple languages', function() {
+      console.log(r);
+    });
     describe('parsed english word', function() {
     	var w = null;
     	before(function() {
