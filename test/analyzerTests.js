@@ -89,10 +89,27 @@ describe('wiktionary parser', function() {
         expect(w.meanings.length).to.be.equal(1);
       });
     	describe('meaning 1', function() {
-    		it('should have noun role');
-    	});
-    
+        var m = null;
+        before(function() {
+          m = w.meanings[0];
+        });
+        it('should have proper etymology', function() {
+          expect(m.etymology).to.be.ok;
+          expect(m.etymology).to.have.property('from');
+          expect(m.etymology.from).to.eql([ 
+                [ 'enm', 'sample' ],
+                [ 'enm', 'asaumple' ],
+                [ 'fro', 'essample' ],
+                [ 'la', 'exemplum' ] ]);
+        }); 
 
-    })
+    		it('should have noun role', function() {
+          expect(m).to.be.ok;
+          var r = m.roles[0];
+          expect(r).to.be.ok;
+          expect(r.role).to.be.equal("noun");
+        });
+      });
+    });
   });
 });

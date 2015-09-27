@@ -55,7 +55,57 @@ function normalizeRole(role) {
 
 // {{t|ast|prueba|f}} - translation
 // {{t+|sw|jaribio}}
+function isTerm(template) {
+	return template.name=="term" || template.name=="m";
+}
 
+function parseTerm(template) {
+	if (template.name=="term") {
+		return [String(template.get("lang").value), 
+						String(template.params[0].value)];
+
+	} 
+	if (template.name=="m") {
+		return [String(template.params[0].value), 
+						String(template.params[1].value)];
+	}
+}
+
+function parseEtymology(pdoc) {
+	var result = {};
+	var lastMeaningfulText = ".";
+	for (var i=0; i<pdoc.length; i++) {
+		var e = pdoc.get(i);
+		var newText = null;
+		if (e instanceof Parsoid.PText) {
+			newText = e.toString();
+			if (newText) {
+				if (newText.match(/from/i)) {
+					lastMeaningfulText = "from";
+				} else if (newText.match(/\./)) {
+					lastMeaningfulText = ".";
+				}
+			}
+		}
+		
+
+
+		if (e instanceof Parsoid.PTemplate) {
+			if (lastMeaningfulText=="from" && isTerm(e)) {
+				if (! result.from) {
+					result.from = [];
+				}
+				var term = parseTerm(e);
+				result.from.push(term);
+				console.log("							term: ", result);
+
+			}
+		}
+	}
+	console.log("Etymology: ", result);
+	return result;
+
+}
 
 module.exports.parse = function(wikitext, callback) {
 	Parsoid.parse(wikitext, {
@@ -66,40 +116,64 @@ module.exports.parse = function(wikitext, callback) {
 			var result = {};
 
 
-			var headings = pdoc.filterHeadings();
 			var currentLanguage = null;
 			var currentLanguageContents = null;
 			var currentMeaningContents = null;
-			headings.forEach(function(heading) {
-				var headingString = heading.title.toString();
-				if (heading.level==2) {
-					currentLanguage = languageAnyNameToName(headingString);
-					console.log("found language ", currentLanguage);
-					currentLanguageContents = {
-						meanings: [],
-					};
-					result[currentLanguage] = currentLanguageContents;
-				}
+			var currentHeadingBreadCrumps = [];
+			var currentHeadingLevel = null;
+			var currentHeading = null;
+			for (var i=0; i<pdoc.length; i++) {
+				var currentElement = pdoc.get(i);
+				if (currentElement instanceof Parsoid.PHeading) {
+					var heading = currentElement;
+					var headingString = heading.title.toString();
 
-				if (heading.level==3 && headingString.match(/Etymology.*/)) {
-					console.log("  found meaning ", headingString);
-					currentMeaningContents = {
-						etymology:{},
-						roles:[],
-					};
-					currentLanguageContents.meanings.push(currentMeaningContents);
-				}
+					if (currentHeadingLevel!=null) {
+						for (var hpopi=0; hpopi<(currentHeadingLevel-heading.level+1); hpopi++){
+							currentHeadingBreadCrumps.pop();
+						}
+					}
+					currentHeadingBreadCrumps.push(headingString);
+					currentHeading = headingString;
 
-				if ((heading.level==3||heading.level==4)&&isRole(headingString)) {
-					console.log("    found role ", headingString);
+					currentHeadingLevel = heading.level;
+					if (heading.level==2) {
+						currentLanguage = languageAnyNameToName(headingString);
+						console.log("found language ", currentLanguage);
+						currentLanguageContents = {
+							meanings: [],
+						};
+						result[currentLanguage] = currentLanguageContents;
+					}
 
-					currentMeaningContents.roles.push({
-						role:normalizeRole(headingString)
-					})
-				}
+					if (heading.level==3 && headingString.match(/Etymology.*/)) {
+						console.log("  found meaning ", headingString);
+						console.log(heading.pnodes);
+						currentMeaningContents = {
+							etymology:{},
+							roles:[],
+						};
+						currentLanguageContents.meanings.push(currentMeaningContents);
+					}
 
-			});
+					if ((heading.level==3||heading.level==4)&&isRole(headingString)) {
+						console.log("    found role ", headingString);
 
+						currentMeaningContents.roles.push({
+							role:normalizeRole(headingString)
+						})
+					}
+				} else if (currentElement instanceof Parsoid.PTag) {
+					if (currentHeading&&currentHeading.match(/Etymology.*/)){
+
+						
+						currentMeaningContents.etymology = parseEtymology(currentElement.contents);
+					}
+
+				} 
+				
+
+			}
 			console.log(result);
 			callback(null, result);
 		}).done();
