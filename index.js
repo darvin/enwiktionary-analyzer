@@ -39,14 +39,28 @@ module.exports.parse = function(wikitext, callback) {
 
 
 			var headings = pdoc.filterHeadings();
+			var currentLanguage = null;
+			var currentLanguageContents = null;
+			var currentMeaningContents = null;
 			headings.forEach(function(heading) {
 				if (heading.level==2) {
-					var language = languageAnyNameToName(heading.title.toString());
-					console.log("found language ", language);
-					result[language] = {}
+					currentLanguage = languageAnyNameToName(heading.title.toString());
+					console.log("found language ", currentLanguage);
+					currentLanguageContents = {
+						meanings: [],
+					};
+					result[currentLanguage] = currentLanguageContents;
+				}
+
+				if (heading.level==3 && heading.title.toString().match(/Etymology.*/)) {
+					console.log("  found meaning ", heading.title.toString());
+					currentMeaningContents = {};
+					currentLanguageContents.meanings.push(currentMeaningContents);
 				}
 
 			});
+
+			console.log(result);
 			callback(null, result);
 		}).done();;
 }

@@ -36,7 +36,7 @@ describe('wiktionary parser', function() {
     	});
     	it('should have 2 meanings', function() {
         expect(w.meanings).to.be.ok;
-        expect(w.meanings.length).to.be.equal(1);
+        expect(w.meanings.length).to.be.equal(2);
       });
     	describe('meaning 1', function() {
     		it('should have etymology');
