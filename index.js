@@ -43,6 +43,19 @@ function normalizeRole(role) {
 	return roles[role];
 }
 
+
+
+/* templates to process:
+
+{{sense|an oath or affirmation}} 
+
+{{l|cs|háček}} - link
+{{m|la|*tersa||dry land}} - mention
+{{term|test|lang=fro||an earthen vessel}}
+
+{{t|ast|prueba|f}} - translation
+
+
 module.exports.parse = function(wikitext, callback) {
 	Parsoid.parse(wikitext, {
 			pdoc: true,
