@@ -39,9 +39,20 @@ describe('wiktionary parser', function() {
         expect(w.meanings.length).to.be.equal(2);
       });
     	describe('meaning 1', function() {
-    		it('should have etymology');
-    		it('should have noun role');
-    		it('should have verb role');
+        var m = null;
+        before(function() {
+          m = r["en"].meanings[0];
+        });
+    		it('should have etymology', function() {
+          expect(m).to.have.property("etymology");
+        });
+    		it('should have 2 roles', function() {
+          expect(m).to.have.property("roles");
+          expect(m.roles).to.be.ok;
+          expect(m.roles.length).to.be.equal(2);
+        }););
+        it('should have noun role');
+        it('should have verb role');
     	});
     	describe('meaning 2', function() {
     		it('should have etymology');
