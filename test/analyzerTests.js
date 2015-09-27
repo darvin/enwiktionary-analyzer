@@ -47,7 +47,12 @@ describe('wiktionary parser', function() {
         });
     		it('should have etymology', function() {
           expect(m).to.have.property("etymology");
-          expect(m.etymology).to.eql({});
+          expect(m.etymology).to.eql({ from: 
+                 [ [ 'fro', 'test' ],
+                   [ 'la', 'testum' ],
+                   [ 'la', '*terstus' ],
+                   [ 'la', 'terra' ],
+                   [ 'la', '*tersa' ] ] });
         });
     		it('should have 2 roles', function() {
           expect(m).to.have.property("roles");
