@@ -29,6 +29,20 @@ function languageAnyNameToName(anyName){
 	return langNamesByAnyName[anyName];
 }
 
+
+var roles = {
+	"Noun":"noun",
+	"Verb":"verb",
+}
+
+function isRole(str) {
+	return roles.hasOwnProperty(str);
+}
+
+function normalizeRole(role) {
+	return roles[role];
+}
+
 module.exports.parse = function(wikitext, callback) {
 	Parsoid.parse(wikitext, {
 			pdoc: true,
@@ -43,8 +57,9 @@ module.exports.parse = function(wikitext, callback) {
 			var currentLanguageContents = null;
 			var currentMeaningContents = null;
 			headings.forEach(function(heading) {
+				var headingString = heading.title.toString();
 				if (heading.level==2) {
-					currentLanguage = languageAnyNameToName(heading.title.toString());
+					currentLanguage = languageAnyNameToName(headingString);
 					console.log("found language ", currentLanguage);
 					currentLanguageContents = {
 						meanings: [],
@@ -52,15 +67,26 @@ module.exports.parse = function(wikitext, callback) {
 					result[currentLanguage] = currentLanguageContents;
 				}
 
-				if (heading.level==3 && heading.title.toString().match(/Etymology.*/)) {
-					console.log("  found meaning ", heading.title.toString());
-					currentMeaningContents = {};
+				if (heading.level==3 && headingString.match(/Etymology.*/)) {
+					console.log("  found meaning ", headingString);
+					currentMeaningContents = {
+						etymology:{},
+						roles:[],
+					};
 					currentLanguageContents.meanings.push(currentMeaningContents);
+				}
+
+				if ((heading.level==3||heading.level==4)&&isRole(headingString)) {
+					console.log("    found role ", headingString);
+
+					currentMeaningContents.roles.push({
+						role:normalizeRole(headingString)
+					})
 				}
 
 			});
 
 			console.log(result);
 			callback(null, result);
-		}).done();;
+		}).done();
 }

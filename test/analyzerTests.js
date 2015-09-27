@@ -50,7 +50,7 @@ describe('wiktionary parser', function() {
           expect(m).to.have.property("roles");
           expect(m.roles).to.be.ok;
           expect(m.roles.length).to.be.equal(2);
-        }););
+        });
         it('should have noun role');
         it('should have verb role');
     	});
