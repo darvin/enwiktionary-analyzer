@@ -26,7 +26,6 @@ function languageAnyNameToName(anyName){
 			langNamesByAnyName[languages[languageName].canonicalName] = languageName;
 		}
 	}
-	console.log(langNamesByAnyName);
 	return langNamesByAnyName[anyName];
 }
 

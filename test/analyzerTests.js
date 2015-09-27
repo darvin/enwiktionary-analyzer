@@ -8,9 +8,10 @@ var fs = require('fs');
 
 describe('wiktionary parser', function() {
 
-  xdescribe('parses "test"', function () {
+  describe('parses "test"', function () {
   	var r = null;
   	before(function(done) {
+      this.timeout(10000);
 			var wikitext = fs.readFileSync(path.join(__dirname,"fixtures", "test.wiki"), {encoding:'utf8'});
 
       wiktParser.parse(wikitext, function(err, result) {
@@ -23,7 +24,10 @@ describe('wiktionary parser', function() {
       expect(r).to.be.ok;
     });
     it('should have multiple languages', function() {
-      console.log(r);
+      expect(r).to.have.property("en");
+      expect(r).to.have.property("br");
+      expect(r).to.have.property("fro");
+      expect(r).to.have.property("lld");
     });
     describe('parsed english word', function() {
     	var w = null;
