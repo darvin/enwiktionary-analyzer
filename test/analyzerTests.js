@@ -13,9 +13,6 @@ var Parsoid = require('parsoid');
 describe('wiktionary parser machinery', function(){
   it('should parse word term with non text elements inside', function(done) {
     var element = wiktParser.parsoidParse("<nowiki>*</nowiki>tersa", function(err, pdoc) {
-      // console.log(pdoc.get(0));
-      // expect(pdoc.get(0)).to.be.instanceof(Parsoid.PTag);
-
       var result = wiktParser.toPlainString(pdoc);
 
       expect(result).to.be.equal("*tersa");
@@ -92,6 +89,15 @@ describe('wiktionary parser', function() {
 
     })
   });
+
+
+  it.only('parses without etymology', function(done) {
+    wiktParser.parse("==Polish==\n===Noun===\n{{pl-noun|m-in}}\n\n# {{l|en|test}}", function(err, result) {
+      console.log(prettyjson.render(result));  
+
+      done(err);
+    });
+  })
 
   describe('parses "sample"', function () {
   	var r = null;
