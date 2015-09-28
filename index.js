@@ -46,6 +46,14 @@ function normalizeRole(role) {
 
 
 
+function toPlainString(pdoc) {
+	var result = "";
+	pdoc.filterText().forEach(function(t) {
+		result += t.toString().replace(/\<\/?nowiki\>/gi,"");
+	});
+	return result;
+}
+
 //  templates to process:
 
 // {{sense|an oath or affirmation}} 
@@ -62,13 +70,13 @@ function isTerm(template) {
 
 function parseTerm(template) {
 	if (template.name=="term") {
-		return [String(template.get("lang").value), 
-						String(template.params[0].value)];
+		return [toPlainString(template.get("lang").value), 
+						toPlainString(template.params[0].value)];
 
 	} 
 	if (template.name=="m") {
-		return [String(template.params[0].value), 
-						String(template.params[1].value)];
+		return [toPlainString(template.params[0].value), 
+						toPlainString(template.params[1].value)];
 	}
 }
 
@@ -108,12 +116,19 @@ function parseEtymology(pdoc) {
 
 }
 
-module.exports.parse = function(wikitext, callback) {
+
+function parsoidParse(wikitext, callback) {
 	Parsoid.parse(wikitext, {
 			pdoc: true,
 			wt2html: false,
 			config: ls
-		}).then(function(pdoc) {
+		}).then(function(pdoc) { 
+			callback(null, pdoc); //fixme pass error
+		}).done();
+}
+
+function parse(wikitext, callback) {
+	parsoidParse(wikitext, function(err, pdoc) {
 			var result = {};
 
 
@@ -177,5 +192,14 @@ module.exports.parse = function(wikitext, callback) {
 			}
 			// console.log(result);
 			callback(null, result);
-		}).done();
+		});
+}
+
+
+
+module.exports = {
+	parse: parse,
+	parsoidParse: parsoidParse,
+	toPlainString: toPlainString,
+	parseEtymology: parseEtymology
 }

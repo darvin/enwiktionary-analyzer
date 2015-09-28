@@ -7,7 +7,27 @@ var fs = require('fs');
 var prettyjson = require('prettyjson');
 
 
+
+var Parsoid = require('parsoid');
+
+describe('wiktionary parser machinery', function(){
+  it('should parse word term with non text elements inside', function(done) {
+    var element = wiktParser.parsoidParse("<nowiki>*</nowiki>tersa", function(err, pdoc) {
+      // console.log(pdoc.get(0));
+      // expect(pdoc.get(0)).to.be.instanceof(Parsoid.PTag);
+
+      var result = wiktParser.toPlainString(pdoc);
+
+      expect(result).to.be.equal("*tersa");
+      done(err);
+    });
+  });
+});
+
+
 describe('wiktionary parser', function() {
+
+
 
   describe('parses "test"', function () {
   	var r = null;
