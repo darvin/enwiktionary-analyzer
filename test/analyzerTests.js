@@ -48,6 +48,23 @@ describe('wiktionary parser', function() {
       expect(r).to.have.property("fro");
       expect(r).to.have.property("lld");
     });
+
+    describe('parsed polish word', function() {
+      var w = null;
+      before(function() {
+        w = r["pl"];
+      });
+      it('should have 1 meaning', function() {
+        expect(w.meanings).to.be.ok;
+        expect(w.meanings.length).to.be.equal(1);
+        expect(w.meanings[0]).to.have.property('roles');
+        expect(w.meanings[0]).not.to.have.property('etymology');
+        expect(w.meanings[0].roles[0].role).to.be.equal('noun');
+
+      });
+ 
+    })
+
     describe('parsed english word', function() {
     	var w = null;
     	before(function() {
@@ -80,7 +97,23 @@ describe('wiktionary parser', function() {
         it('should have verb role');
     	});
     	describe('meaning 2', function() {
-    		it('should have etymology');
+        var m = null;
+        before(function() {
+          m = r["en"].meanings[1];
+        });
+
+        it('should have etymology', function() {
+          expect(m).to.have.property("etymology");
+          expect(m.etymology).to.eql({ from: 
+                 [ [ 'fro', 'tester' ],
+                   [ 'la', 'testari' ],
+                   [ 'la', 'testis' ]] });
+        });
+        it('should have 2 roles', function() {
+          expect(m).to.have.property("roles");
+          expect(m.roles).to.be.ok;
+          expect(m.roles.length).to.be.equal(2);
+        });
     		it('should have noun role');
     		it('should have verb role');
     	});
@@ -91,10 +124,13 @@ describe('wiktionary parser', function() {
   });
 
 
-  it.only('parses without etymology', function(done) {
+  it('parses without etymology', function(done) {
     wiktParser.parse("==Polish==\n===Noun===\n{{pl-noun|m-in}}\n\n# {{l|en|test}}", function(err, result) {
       console.log(prettyjson.render(result));  
-
+      expect(result).to.have.property('pl');
+      expect(result.pl).to.have.property('meanings');
+      expect(result.pl.meanings[0]).to.have.property('roles');
+      expect(result.pl.meanings[0].roles[0].role).to.be.equal('noun');
       done(err);
     });
   })

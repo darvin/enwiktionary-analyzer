@@ -138,6 +138,16 @@ function parse(wikitext, callback) {
 			var currentHeadingBreadCrumps = [];
 			var currentHeadingLevel = null;
 			var currentHeading = null;
+
+			var ensureCurrentMeaning= function() {
+				if (currentMeaningContents==null) {
+					currentMeaningContents = {
+ 						roles:[],
+					};
+					currentLanguageContents.meanings.push(currentMeaningContents);
+				}
+			}
+
 			for (var i=0; i<pdoc.length; i++) {
 				var currentElement = pdoc.get(i);
 				if (currentElement instanceof Parsoid.PHeading) {
@@ -160,21 +170,21 @@ function parse(wikitext, callback) {
 							meanings: [],
 						};
 						result[currentLanguage] = currentLanguageContents;
+						currentMeaningContents = null;
+
 					}
 
 					if (heading.level==3 && headingString.match(/Etymology.*/)) {
 						// console.log("  found meaning ", headingString);
 						// console.log(heading.pnodes);
-						currentMeaningContents = {
-							etymology:{},
-							roles:[],
-						};
-						currentLanguageContents.meanings.push(currentMeaningContents);
+						currentMeaningContents = null;
+						ensureCurrentMeaning();
+						currentMeaningContents.etymology = {};
 					}
 
 					if ((heading.level==3||heading.level==4)&&isRole(headingString)) {
 						// console.log("    found role ", headingString);
-
+						ensureCurrentMeaning();
 						currentMeaningContents.roles.push({
 							role:normalizeRole(headingString)
 						})
