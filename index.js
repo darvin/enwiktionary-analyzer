@@ -1,6 +1,7 @@
 var Parsoid = require('parsoid');
 
 var languages = require("./lib/languages");
+var word = require("./lib/word");
 
 var ls = {
 	setup: function(pc) {
@@ -211,5 +212,7 @@ module.exports = {
 	parse: parse,
 	parsoidParse: parsoidParse,
 	toPlainString: toPlainString,
-	parseEtymology: parseEtymology
+	parseEtymology: parseEtymology,
+
+	Word: word.Word,
 }
