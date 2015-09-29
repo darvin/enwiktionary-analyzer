@@ -1,7 +1,8 @@
 var Parsoid = require('parsoid');
 
 var languages = require("./lib/languages");
-var word = require("./lib/word");
+
+var Word = require("./lib/word").Word;
 
 var ls = {
 	setup: function(pc) {
@@ -81,8 +82,7 @@ function parseTerm(template) {
 	}
 }
 
-function parseEtymology(pdoc) {
-	var result = {};
+function parseEtymology(pdoc, etymology) {
 	var lastMeaningfulText = ".";
 	for (var i=0; i<pdoc.length; i++) {
 		var e = pdoc.get(i);
@@ -102,18 +102,14 @@ function parseEtymology(pdoc) {
 
 		if (e instanceof Parsoid.PTemplate) {
 			if (lastMeaningfulText=="from" && isTerm(e)) {
-				if (! result.from) {
-					result.from = [];
-				}
+				
 				var term = parseTerm(e);
-				result.from.push(term);
+				etymology.addFrom(term[0],term[1]);
 				// console.log("							term: ", result);
 
 			}
 		}
 	}
-	// console.log("Etymology: ", result);
-	return result;
 
 }
 
@@ -128,26 +124,17 @@ function parsoidParse(wikitext, callback) {
 		}).done();
 }
 
-function parse(wikitext, callback) {
+function parseArticle(articleName, wikitext, callback) {
 	parsoidParse(wikitext, function(err, pdoc) {
 			var result = {};
 
+			var word = null;
+			var wordName = articleName; //fixme
 
-			var currentLanguage = null;
-			var currentLanguageContents = null;
-			var currentMeaningContents = null;
 			var currentHeadingBreadCrumps = [];
 			var currentHeadingLevel = null;
 			var currentHeading = null;
 
-			var ensureCurrentMeaning= function() {
-				if (currentMeaningContents==null) {
-					currentMeaningContents = {
- 						roles:[],
-					};
-					currentLanguageContents.meanings.push(currentMeaningContents);
-				}
-			}
 
 			for (var i=0; i<pdoc.length; i++) {
 				var currentElement = pdoc.get(i);
@@ -165,36 +152,25 @@ function parse(wikitext, callback) {
 
 					currentHeadingLevel = heading.level;
 					if (heading.level==2) {
-						currentLanguage = languageAnyNameToName(headingString);
+						var lang = languageAnyNameToName(headingString);
 						// console.log("found language ", currentLanguage);
-						currentLanguageContents = {
-							meanings: [],
-						};
-						result[currentLanguage] = currentLanguageContents;
-						currentMeaningContents = null;
-
+						word = new Word(lang, wordName);
+						result[lang] = word;
 					}
 
 					if (heading.level==3 && headingString.match(/Etymology.*/)) {
-						// console.log("  found meaning ", headingString);
-						// console.log(heading.pnodes);
-						currentMeaningContents = null;
-						ensureCurrentMeaning();
-						currentMeaningContents.etymology = {};
+						word.addMeaning();
 					}
 
 					if ((heading.level==3||heading.level==4)&&isRole(headingString)) {
 						// console.log("    found role ", headingString);
-						ensureCurrentMeaning();
-						currentMeaningContents.roles.push({
-							role:normalizeRole(headingString)
-						})
+						word.lastMeaning().addRole(normalizeRole(headingString));
 					}
 				} else if (currentElement instanceof Parsoid.PTag) {
 					if (currentHeading&&currentHeading.match(/Etymology.*/)){
 
 						
-						currentMeaningContents.etymology = parseEtymology(currentElement.contents);
+						parseEtymology(currentElement.contents, word.lastMeaning().etymology);
 					}
 
 				} 
@@ -209,10 +185,10 @@ function parse(wikitext, callback) {
 
 
 module.exports = {
-	parse: parse,
+	parseArticle: parseArticle,
 	parsoidParse: parsoidParse,
 	toPlainString: toPlainString,
 	parseEtymology: parseEtymology,
 
-	Word: word.Word,
+	Word: Word,
 }

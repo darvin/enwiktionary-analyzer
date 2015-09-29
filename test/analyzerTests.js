@@ -32,7 +32,7 @@ describe('wiktionary parser', function() {
       this.timeout(10000);
 			var wikitext = fs.readFileSync(path.join(__dirname,"fixtures", "test.wiki"), {encoding:'utf8'});
 
-      wiktParser.parse(wikitext, function(err, result) {
+      wiktParser.parseArticle("test", wikitext, function(err, result) {
         console.log(prettyjson.render(result));  
         r = result;
         done(err);
@@ -58,7 +58,6 @@ describe('wiktionary parser', function() {
         expect(w.meanings).to.be.ok;
         expect(w.meanings.length).to.be.equal(1);
         expect(w.meanings[0]).to.have.property('roles');
-        expect(w.meanings[0]).not.to.have.property('etymology');
         expect(w.meanings[0].roles[0].role).to.be.equal('noun');
 
       });
@@ -125,7 +124,7 @@ describe('wiktionary parser', function() {
 
 
   it('parses without etymology', function(done) {
-    wiktParser.parse("==Polish==\n===Noun===\n{{pl-noun|m-in}}\n\n# {{l|en|test}}", function(err, result) {
+    wiktParser.parseArticle("test","==Polish==\n===Noun===\n{{pl-noun|m-in}}\n\n# {{l|en|test}}", function(err, result) {
       console.log(prettyjson.render(result));  
       expect(result).to.have.property('pl');
       expect(result.pl).to.have.property('meanings');
@@ -140,7 +139,7 @@ describe('wiktionary parser', function() {
   	before(function(done) {
 			var wikitext = fs.readFileSync(path.join(__dirname,"fixtures", "sample.wiki"), {encoding:'utf8'});
 
-      wiktParser.parse(wikitext, function(err, result) {
+      wiktParser.parseArticle("sample", wikitext, function(err, result) {
         console.log(prettyjson.render(result));  
         r = result;
         done(err);

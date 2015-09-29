@@ -13,7 +13,6 @@ describe('Word', function(){
     expect(w.lang).to.be.eql('en');
     expect(w.name).to.be.eql('sample');
     expect(w.toObject().wordLink).to.be.eql(['en', 'sample']);
-    expect(w.lastMeaning()).not.to.be.ok;
     w.addMeaning();
     expect(w.lastMeaning()).to.be.ok;
     expect(w.lastMeaning()).to.be.equal(w.meanings[0]);
@@ -34,4 +33,10 @@ describe('Word', function(){
     expect(w.toObject().meanings[0].roles).to.be.eql([ { role: 'verb' }, { role: 'noun' } ]);
 
   });
+  it('should have non implicit last meaning', function() {
+    var w = new Word('en', 'sample');
+    expect(w.lastMeaning()).to.be.ok;
+
+  });
+
 });
