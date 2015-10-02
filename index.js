@@ -3,6 +3,7 @@ var Parsoid = require('parsoid');
 var languages = require("./lib/languages");
 
 var Word = require("./lib/word").Word;
+var newWordLink = require("./lib/word").newWordLink;
 
 var ls = {
 	setup: function(pc) {
@@ -70,15 +71,29 @@ function isTerm(template) {
 	return template.name=="term" || template.name=="m";
 }
 
+function parseLinkTerm(link, lang) {
+	//fixme not good using text of link instead of title.
+	var linkWord = toPlainString(link.text);
+	var splitLink = link.title.split("#");
+	var linkLang = splitLink[1] ? languageAnyNameToName(splitLink[1]) : lang;
+	return newWordLink(linkLang, linkWord);
+}
+
+function parseTranslation(template) {
+	if (template.name=="t+"||template.name=="t") {
+		return newWordLink(toPlainString(template.params[0].value), toPlainString(template.params[1].value));
+	}
+}
+
 function parseTerm(template) {
 	if (template.name=="term") {
-		return [toPlainString(template.get("lang").value), 
-						toPlainString(template.params[0].value)];
+		return newWordLink(toPlainString(template.get("lang").value), 
+						toPlainString(template.params[0].value));
 
 	} 
 	if (template.name=="m") {
-		return [toPlainString(template.params[0].value), 
-						toPlainString(template.params[1].value)];
+		return newWordLink(toPlainString(template.params[0].value), 
+						toPlainString(template.params[1].value));
 	}
 }
 
@@ -103,8 +118,8 @@ function parseEtymology(pdoc, etymology) {
 		if (e instanceof Parsoid.PTemplate) {
 			if (lastMeaningfulText=="from" && isTerm(e)) {
 				
-				var term = parseTerm(e);
-				etymology.addFrom(term[0],term[1]);
+				var wordLink = parseTerm(e);
+				etymology.addFrom(wordLink);
 				// console.log("							term: ", result);
 
 			}
@@ -113,6 +128,103 @@ function parseEtymology(pdoc, etymology) {
 
 }
 
+function parseMultiAnonArgTemplate(template) {
+	var result = [];
+	for (var i=0; i<template.params.length; i++) {
+
+		var param=template.params[i];
+		if (parseInt(param.name)==i+1) {
+			result.push(toPlainString(param.value));
+		}
+	}
+	return result;
+}
+
+function parseList(pdoc, func) {
+	for (var i=0; i<pdoc.length; i++) {
+		var e = pdoc.get(i);
+		if (e instanceof Parsoid.PTag && e.tagName=="li") {
+			func(e);
+		}
+	}
+}
+
+function parseSynonyms(pdoc, wordRole, lang) {
+	parseList(pdoc, function(e) {
+		e.contents.filterWikiLinks().forEach(function (link) {
+			var term = parseLinkTerm(link, lang);
+			wordRole.addSynonym(term);
+		});
+	});
+}
+
+function parseHyponyms(pdoc, wordRole, lang) {
+	parseList(pdoc, function(e) {
+		e.contents.filterWikiLinks().forEach(function (link) {
+			var term = parseLinkTerm(link, lang);
+			wordRole.addHyponym(term);
+		});
+	});
+}
+
+
+function parseTranslations(pdoc, wordRole, lang) {
+	parseList(pdoc, function(e) {
+		e.contents.filterTemplates().forEach(function (template) {
+			var term = parseTranslation(template, lang);
+			wordRole.addTranslation(term);
+		});
+	});
+}
+
+
+function parsePronunciation(pdoc, word) {
+	var pronounItem = null;
+	var storePronounItem = function() {
+		if (!pronounItem) {
+			return;
+		}
+		if (pronounItem.hyphenation) {
+			word.addHyphenation(pronounItem);
+		}
+		if (pronounItem.audioFile) {
+			word.addPronunciation(pronounItem);
+		}
+		if (pronounItem.pronunciation) {
+			word.addPronunciation(pronounItem);
+		}
+		if (pronounItem.rhyme) {
+			word.addRhyme(pronounItem);
+		}
+	}
+	parseList(pdoc, function(e) {
+		storePronounItem();
+		pronounItem = {};
+		e.contents.filterTemplates().forEach(function (template) {
+			switch(template.name) {
+				case "a":
+					pronounItem.accent=toPlainString(template.params[0].value);
+					break;
+				case "rhymes":
+					pronounItem.rhyme=toPlainString(template.params[0].value);
+					break;
+				case "IPA":
+					pronounItem.pronunciation=toPlainString(template.params[0].value);
+					break;
+				case "hyphenation":
+					pronounItem.hyphenation=parseMultiAnonArgTemplate(template);
+					break;
+				case "audio":
+					pronounItem.audioFile=toPlainString(template.params[0].value);
+					pronounItem.audioDescription=toPlainString(template.params[1].value);
+					break;
+
+			}
+
+		});
+	});
+	storePronounItem();
+}
 
 function parsoidParse(wikitext, callback) {
 	Parsoid.parse(wikitext, {
@@ -168,11 +280,22 @@ function parseArticle(articleName, wikitext, callback) {
 					}
 				} else if (currentElement instanceof Parsoid.PTag) {
 					if (currentHeading&&currentHeading.match(/Etymology.*/)){
-
-						
 						parseEtymology(currentElement.contents, word.lastMeaning().etymology);
 					}
+					if (currentHeading&&currentHeading.match(/Synonyms.*/)){
+						parseSynonyms(currentElement.contents, word.lastMeaning().lastRole(), word.lang);
+					}
+					if (currentHeading&&currentHeading.match(/Hyponyms.*/)){
+						parseHyponyms(currentElement.contents, word.lastMeaning().lastRole(), word.lang);
+					}
 
+					if (currentHeading&&currentHeading.match(/Translations.*/)){
+						parseTranslations(currentElement.contents, word.lastMeaning().lastRole(), word.lang);
+					}
+
+					if (currentHeading&&currentHeading.match(/Pronunciation/)){
+						parsePronunciation(currentElement.contents, word);
+					}
 				} 
 				
 
