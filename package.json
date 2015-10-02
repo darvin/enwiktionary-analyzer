@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "repository" :
-  { "type" : "git"
-  , "url" : "https://github.com/darvin/enwiktionary-analyzer.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darvin/enwiktionary-analyzer.git"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
@@ -14,7 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "parsoid": "^0.4.0"
+    "capitalize": "^1.0.0",
+    "parsoid": "^0.4.0",
+    "pluralize": "^1.2.1"
   },
   "devDependencies": {
     "chai": "^3.3.0",
