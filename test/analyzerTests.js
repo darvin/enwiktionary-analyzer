@@ -3,7 +3,7 @@ var chai = require('chai');
 chai.should();
 chai.use(require('chai-things'));
 
-var wiktParser = require('../');
+var analyzer = require('../').analyzer;
 var path = require('path');
 var fs = require('fs');
 var prettyjson = require('prettyjson');
@@ -14,8 +14,8 @@ var Parsoid = require('parsoid');
 
 describe('wiktionary parser machinery', function(){
   it('should parse word term with non text elements inside', function(done) {
-    var element = wiktParser.parsoidParse("<nowiki>*</nowiki>tersa", function(err, pdoc) {
-      var result = wiktParser.toPlainString(pdoc);
+    var element = analyzer.parsoidParse("<nowiki>*</nowiki>tersa", function(err, pdoc) {
+      var result = analyzer.toPlainString(pdoc);
 
       expect(result).to.be.equal("*tersa");
       done(err);
@@ -34,7 +34,7 @@ describe('wiktionary parser', function() {
       this.timeout(10000);
 			var wikitext = fs.readFileSync(path.join(__dirname,"fixtures", "test.wiki"), {encoding:'utf8'});
 
-      wiktParser.parseArticle("test", wikitext, function(err, result) {
+      analyzer.parseArticle("test", wikitext, function(err, result) {
         console.log(prettyjson.render(result));  
         r = result;
         done(err);
@@ -150,7 +150,7 @@ describe('wiktionary parser', function() {
 
 
   it('parses without etymology', function(done) {
-    wiktParser.parseArticle("test","==Polish==\n===Noun===\n{{pl-noun|m-in}}\n\n# {{l|en|test}}", function(err, result) {
+    analyzer.parseArticle("test","==Polish==\n===Noun===\n{{pl-noun|m-in}}\n\n# {{l|en|test}}", function(err, result) {
       console.log(prettyjson.render(result));  
       expect(result).to.have.property('pl');
       expect(result.pl).to.have.property('meanings');
@@ -165,7 +165,7 @@ describe('wiktionary parser', function() {
   	before(function(done) {
 			var wikitext = fs.readFileSync(path.join(__dirname,"fixtures", "sample.wiki"), {encoding:'utf8'});
 
-      wiktParser.parseArticle("sample", wikitext, function(err, result) {
+      analyzer.parseArticle("sample", wikitext, function(err, result) {
         console.log(prettyjson.render(result));  
         r = result;
         done(err);

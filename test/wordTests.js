@@ -1,8 +1,7 @@
 var assert = require('chai').assert;
 var expect = require('chai').expect;
-var wiktParser = require('../');
 var prettyjson = require('prettyjson');
-var Word = wiktParser.Word;
+var Word = require('../').word.Word;
 
 
 
