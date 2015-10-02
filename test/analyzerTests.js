@@ -128,7 +128,7 @@ describe('wiktionary parser', function() {
           expect(m.roles).to.be.ok;
           expect(m.roles.length).to.be.equal(2);
         });
-    		it('should have noun role');
+          it('should have noun role');
         describe('noun role', function() {
           it('should have synonyms');
           it('should have antonyms');
@@ -158,7 +158,7 @@ describe('wiktionary parser', function() {
       expect(result.pl.meanings[0].roles[0].role).to.be.equal('noun');
       done(err);
     });
-  })
+  });
 
   describe('parses "sample"', function () {
   	var r = null;
