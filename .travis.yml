@@ -2,6 +2,13 @@ language: node_js
 cache:
   directories:
   - node_modules
-
 script:
-  - npm run coveralls
+- npm run coveralls
+deploy:
+  provider: npm
+  email: sergey.v.klimov@gmail.com
+  api_key:
+    secure: lCMCPK738DbZw8V1252qlrLTfHZP14X7sxhKFSCIVfBNOPTQWrEb2APqThVXrG4w4pX6rCG8Et2TAkmCwdccq9pOICl3ZrSkMs+GyT5Q7zfeKYzX6W3TH6HKLbi8ZmNj2YpXRjf+b6vUTclOUX6Md9+sJELojuWa1HEBXkbw5cAEZam/MRoVGw2pQGJO3SXF1nHkt0gT9VhkpeWck9UUGI9DyE6HOvM15aFOJTfDUGoHz6H9KsNRo3KXgxrD0XBNcCZITdLnKeHOpGdLWTZ3L3Ak1VkMbp0kOPh18yWpySZcIIy4YpfN5v16BeaLqchxdf0fxcYxOS89kcxDylptp7S7YtnJ4rMaJGAE6WuYpnKAD/sH8Hz5Jo2WSLpTxAVz8bpXp3OwHSQPBil2HuAEkjAQjAajTi/Bf6hbxaT8H4v0jWkOWdmi6bsgErfamhSqCS6YNiJpJhob9gYSV5Z5Yvtind9e294mt3y0lUwxABQSR93nu6c5X6JVURvCLMRGW/w3Gs04bTslx+QtpJqwNcZhxrGK4Drzxsrl0AnYtFa6ZIkj7rl/3jDuyNstQqoxqjuAPqRyamxInDt5HIDzMFtKnaUWbwo4BNr2NsC9AzB8e0NPM+4VUjnpZl86MvKCXAQtB5WQLFDJEGCA1vSO0f5fZ19GX8zoeoesu3cvmEQ=
+  on:
+    tags: true
+    repo: darvin/enwiktionary-analyzer
