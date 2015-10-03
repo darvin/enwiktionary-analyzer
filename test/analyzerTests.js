@@ -21,6 +21,10 @@ describe('wiktionary parser machinery', function(){
       done(err);
     });
   });
+
+  xit('should parse weird lists of hyponims', function(done) {
+    var listOfHyp = "{{hyp3|title=Hyponyms of ''test''|{{l/en|acid test}}|{{l/en|babysitter test}}|{{l/en|blood test}}|{{l/en|duck test}}|{{l/en|flame test}}|{{l/en|inkblot test}}|{{l/en|litmus test}}|{{l/en|multiple-choice test}}|{{l/en|nose test}}|{{l/en|Rorschach test}}|{{l/en|single-choice test}}|{{l/en|smell test}}|{{l/en|smoke test}}|{{l/en|sniff test}}|{{l/en|stress test}}}}";
+  })
 });
 
 
@@ -88,6 +92,7 @@ describe('wiktionary parser', function() {
         expect(w.meanings).to.be.ok;
         expect(w.meanings.length).to.be.equal(2);
       });
+      it('should have anagrams');
     	describe('meaning 1', function() {
         var m = null;
         before(function() {
@@ -107,7 +112,41 @@ describe('wiktionary parser', function() {
           expect(m.roles).to.be.ok;
           expect(m.roles.length).to.be.equal(2);
         });
-        it('should have noun role');
+        it('should have noun role', function() {
+          expect(m.roles[0].role).to.be.equal('noun');
+        });
+        describe('noun role', function() {
+          var role = null;
+          before(function() {
+            role = m.roles[0];
+          });
+
+          it('should have synonyms', function() {
+            expect(role).to.have.property('synonyms');
+            expect(role.synonyms).to.be.eql([
+              [ 'en', 'challenge' ],
+              [ 'en', 'trial' ],
+              [ 'en', 'quiz' ],
+              [ 'en', 'examination' ] ]);
+          });
+          xit('should have hyponyms', function() {
+            console.log(role.hyponyms);
+
+            expect(role).to.have.property('hyponyms');
+            expect(role.hyponyms).to.be.eql([ [ 'en', 'product sample' ] ]);
+          });
+          it('should have translations', function() {
+            expect(role).to.have.property('translations');
+            role.translations.should.include.something.that.eql([ 'sh', 'тест' ]);
+            role.translations.should.include.something.that.eql([ 'pl', 'sprawdzian' ]);
+
+          });
+          it('should have antonyms');
+          it('should have derived terms');
+          it('should have descendants');
+          it('should have related terms');
+
+        });
         it('should have verb role');
     	});
     	describe('meaning 2', function() {
@@ -128,17 +167,9 @@ describe('wiktionary parser', function() {
           expect(m.roles).to.be.ok;
           expect(m.roles.length).to.be.equal(2);
         });
-          it('should have noun role');
-        describe('noun role', function() {
-          it('should have synonyms');
-          it('should have antonyms');
-          it('should have hyponyms');
-          it('should have translations');
-          it('should have anagrams');
-          it('should have derived terms');
-          it('should have descendants');
-          it('should have related terms');
-        });
+        it('should have noun role');
+
+
 
     		it('should have verb role');
     	});
