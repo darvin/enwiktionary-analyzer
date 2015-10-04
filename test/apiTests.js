@@ -10,7 +10,7 @@ describe('API', function() {
     api.fetchLanguages(function(err, languages) {
       expect(err).to.not.be.ok;
       expect(languages).to.be.ok;
-      expect(languages).to.be.eql(require("../").languages);
+      expect(Object.keys(languages)).to.be.eql(Object.keys(require("../").languages));
 
       done();
     })
