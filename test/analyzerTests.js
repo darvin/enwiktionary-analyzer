@@ -4,6 +4,7 @@ chai.should();
 chai.use(require('chai-things'));
 
 var analyzer = require('../').analyzer;
+var newWordLink = require('../').word.newWordLink;
 var path = require('path');
 var fs = require('fs');
 var prettyjson = require('prettyjson');
@@ -129,11 +130,11 @@ describe('wiktionary parser', function() {
               [ 'en', 'quiz' ],
               [ 'en', 'examination' ] ]);
           });
-          xit('should have hyponyms', function() {
-            console.log(role.hyponyms);
-
+          it('should have hyponyms', function() {
             expect(role).to.have.property('hyponyms');
-            expect(role.hyponyms).to.be.eql([ [ 'en', 'product sample' ] ]);
+            role.hyponyms.should.include.something.that.eql(newWordLink('en', 'Rorschach test'));
+            role.hyponyms.should.include.something.that.eql(newWordLink('en', 'stress test'));
+
           });
           it('should have translations', function() {
             expect(role).to.have.property('translations');
@@ -141,10 +142,28 @@ describe('wiktionary parser', function() {
             role.translations.should.include.something.that.eql([ 'pl', 'sprawdzian' ]);
 
           });
-          it('should have antonyms');
-          it('should have derived terms');
-          it('should have descendants');
-          it('should have related terms');
+          it('should have antonyms', function() {
+            expect(role).to.have.property('antonyms');
+            expect(role.antonyms).to.be.eql([ newWordLink('en', 'breeze'), newWordLink('en', 'recess') ]);
+          });
+          it('should have derived terms', function() {
+            expect(role).to.have.property('derivedTerms');
+            expect(role.derivedTerms).to.be.eql([ newWordLink('en', 'tester') ]);
+          });
+          it('should have descendants', function() {
+            expect(role).to.have.property('descendants');
+            expect(role.descendants).to.be.eql([ newWordLink('de', 'Test'), newWordLink('de', 'test') ]);
+          });
+          it('should have related terms', function() {
+            expect(role).to.have.property('relatedTerms');
+            expect(role.relatedTerms).to.be.eql([
+              newWordLink('en', 'test case'),
+              newWordLink('en', 'test drive'),
+              newWordLink('en', 'test flight'),
+              newWordLink('en', 'test run'),
+              newWordLink('en', 'test tube'),
+            ]);
+          });
 
         });
         it('should have verb role');
