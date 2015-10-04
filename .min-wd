@@ -1,0 +1,8 @@
+{
+  "hostname"  : "localhost",
+  "port"      : 4444,
+  "browsers"  : [ {
+    "name"    : "safari"
+  }
+  ]
+}

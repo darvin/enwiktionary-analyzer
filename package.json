@@ -8,6 +8,11 @@
     "url": "https://github.com/darvin/enwiktionary-analyzer.git"
   },
   "scripts": {
+    "start": "mochify --watch",
+    "phantom": "mochify",
+    "wd": "mochify --wd",
+    "cover": "mochify --cover",
+    "test_mochify": "npm run phantom && npm run wd && npm run cover",
     "test": "./node_modules/.bin/mocha test/",
     "tests_long": "./node_modules/.bin/mocha test_long/",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha test/ --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
@@ -16,17 +21,19 @@
   "license": "ISC",
   "dependencies": {
     "capitalize": "^1.0.0",
-    "parsoid": "^0.4.0",
+    "parsoid": "darvin/parsoid#5ff9f4f330e24ba0b925402d8bf035e4a090e4ef",
     "pluralize": "^1.2.1",
     "superagent": "^1.4.0"
   },
   "devDependencies": {
+    "brfs": "^1.4.1",
     "chai": "^3.3.0",
     "chai-things": "^0.2.0",
     "coveralls": "^2.11.4",
     "istanbul": "^0.3.21",
     "mocha": "^2.3.3",
     "mocha-lcov-reporter": "^1.0.0",
+    "mochify": "^2.13.0",
     "prettyjson": "^1.1.3"
   }
 }
