@@ -4,6 +4,7 @@ cache:
   - node_modules
 script:
 - npm run coveralls
+- npm run tests_long
 deploy:
   provider: npm
   email: sergey.v.klimov@gmail.com
