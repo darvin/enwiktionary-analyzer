@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test/",
+    "tests_long": "./node_modules/.bin/mocha test_long/",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha test/ --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "author": "",

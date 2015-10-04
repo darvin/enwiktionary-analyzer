@@ -1,0 +1,126 @@
+==English==
+{{wikipedia}}
+
+===Etymology===
+From {{etyl|fr|en}} {{term|consultant|lang=fr}}, present participle of {{term|consulter}}, from {{etyl|la|en}} {{term|consultare||to deliberate, consult|lang=la}}, frequentative of {{term|consulere||to consult, deliberate, consider, reflect upon, ask advice}}, from {{term|com-||together}} + {{term|-sulere}}, of uncertain origin.
+
+===Noun===
+{{en-noun}}
+
+# a person or party that is [[consult]]ed.
+# a person whose occupation is to be consulted for their expertise, advice, or help in an area or specialty.  Alternatively, a party whose business is to be similarly consulted.
+
+====Related terms====
+* [[consult]]
+* [[consultancy]]
+* [[consultative]]
+* [[consultation]]
+
+====Translations====
+{{trans-top|person or party that is consulted}}
+* Chinese:
+*: Mandarin: {{t|cmn|顧問|sc=Hani}}, {{t+|cmn|顾问|tr=gùwèn|sc=Hani}}
+* Czech: {{t|cs|konzultant|m}}
+* Danish: {{t+|da|konsulent}}
+* Finnish: {{t+|fi|konsultti}}
+* French: {{t+|fr|consultant|m}}, {{t+|fr|consultante|f}}
+* German: {{t+|de|Berater|m}}, {{t+|de|Beraterin|f}}
+* Hungarian: {{t+|hu|tanácsadó}}
+* Italian: {{t+|it|consulente|m}}
+* Japanese: {{t+|ja|顧問|tr=[[こもん]], komon|sc=Jpan}}, {{t|ja|相談役|tr=[[そうだんやく]], sōdan'yaku|sc=Jpan}}, {{t+|ja|コンサルタント|tr=konsarutanto|sc=Jpan}}
+{{trans-mid}}
+* Korean: [[상담]][[가]] ([[相談]][[家]], sangdamga), [[자문]] [[위원]] ([[諮問]] [[委員]], jamun wiwon), {{t|ko|컨설턴트|sc=Kore}}
+* Kurdish: {{t+|ku|şêwirmend|sc=ku-Arab}}
+* Maori: {{t|mi|mātanga}}, {{t|mi|mātanga hāpai}}
+* Norman: {{t|nrf|consultant|m}}
+* Portuguese: {{t+|pt|consultor|m}}
+* Russian: {{t+|ru|консульта́нт|m}}, {{t+|ru|консульта́нтка|f}}
+* Spanish: {{t|es|consultor|m}}
+* Swedish: {{t+|sv|konsult}}
+* Zazaki: [[şewêrmend]] m
+{{trans-bottom}}
+
+====External links====
+* {{R:Webster 1913}}
+* {{R:Century 1911}}
+
+[[Category:en:Occupations]]
+
+----
+
+==Catalan==
+
+===Verb===
+{{head|ca|verb form}}
+
+# {{ca-verb form of|t=pres|m=ptc|consultar}}
+
+----
+
+==French==
+
+===Verb===
+{{head|fr|present participle}}
+
+# {{present participle of|consulter|lang=fr|nocat=1}}
+
+===Adjective===
+{{fr-adj}}
+
+# [[consulting]]
+
+===Noun===
+{{fr-noun|m|f=consultante}}
+
+# [[#English|consultant]]
+
+===External links===
+* {{R:TLFi}}
+
+----
+
+==Latin==
+
+===Verb===
+{{la-verb-form|cōnsultant}}
+
+# {{inflection of|cōnsultō||3|p|pres|actv|indc|lang=la}}
+
+----
+
+==Norman==
+
+===Etymology===
+{{rfe|lang=nrf}}
+
+===Noun===
+{{nrf-noun|m}}
+
+# {{lb|nrf|Jersey}} [[#English|consultant]]
+
+{{catlangcode|nrf|Occupations}}
+
+[[de:consultant]]
+[[et:consultant]]
+[[fr:consultant]]
+[[ko:consultant]]
+[[hy:consultant]]
+[[io:consultant]]
+[[id:consultant]]
+[[kn:consultant]]
+[[ku:consultant]]
+[[li:consultant]]
+[[hu:consultant]]
+[[mg:consultant]]
+[[ml:consultant]]
+[[my:consultant]]
+[[nl:consultant]]
+[[pl:consultant]]
+[[ro:consultant]]
+[[simple:consultant]]
+[[fi:consultant]]
+[[sv:consultant]]
+[[ta:consultant]]
+[[tr:consultant]]
+[[vi:consultant]]
+[[zh:consultant]]

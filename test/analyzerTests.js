@@ -210,6 +210,23 @@ describe('wiktionary parser', function() {
     });
   });
 
+  describe('parses "consultant"', function () {
+    var r = null;
+    before(function (done) {
+      var wikitext = fs.readFileSync(path.join(__dirname, "fixtures", "consultant.wiki"), {encoding: 'utf8'});
+
+      analyzer.parseArticle("consultant", wikitext, function (err, result) {
+        console.log(prettyjson.render(result));
+        r = result;
+        done(err);
+      });
+    });
+
+    it('should parse wiki', function () {
+      expect(r).to.be.ok;
+    });
+  });
+
   describe('parses "sample"', function () {
   	var r = null;
   	before(function(done) {
