@@ -16,7 +16,8 @@
   "dependencies": {
     "capitalize": "^1.0.0",
     "parsoid": "^0.4.0",
-    "pluralize": "^1.2.1"
+    "pluralize": "^1.2.1",
+    "superagent": "^1.4.0"
   },
   "devDependencies": {
     "chai": "^3.3.0",
