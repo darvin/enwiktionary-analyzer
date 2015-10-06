@@ -14,6 +14,7 @@ var prettyjson = require('prettyjson');
 var Parsoid = require('parsoid');
 
 describe('wiktionary parser machinery', function(){
+  it('should not parse word links with namespace of Wikisaurus:');
   it('should parse word term with non text elements inside', function(done) {
     var element = analyzer.parsoidParse("<nowiki>*</nowiki>tersa", function(err, pdoc) {
       var result = analyzer.toPlainString(pdoc);
@@ -55,7 +56,7 @@ describe('wiktionary parser', function() {
       expect(r).to.have.property("fro");
       expect(r).to.have.property("lld");
     });
-
+    it('should have pronunciation for russian word');
     describe('parsed polish word', function() {
       var w = null;
       before(function() {
@@ -138,9 +139,9 @@ describe('wiktionary parser', function() {
           });
           it('should have translations', function() {
             expect(role).to.have.property('translations');
-            role.translations.should.include.something.that.eql([ 'sh', 'тест' ]);
-            role.translations.should.include.something.that.eql([ 'pl', 'sprawdzian' ]);
-
+            role.translations.should.include.something.that.eql(newWordLink( 'sh', 'тест' ));
+            role.translations.should.include.something.that.eql(newWordLink( 'pl', 'sprawdzian' ));
+            expect(role.translations).all.be.ok;
           });
           it('should have antonyms', function() {
             expect(role).to.have.property('antonyms');
@@ -304,6 +305,7 @@ describe('wiktionary parser', function() {
             expect(role).to.have.property('translations');
             role.translations.should.include.something.that.eql(['pl','próba']);
             role.translations.should.include.something.that.eql(['be','узо́р']);
+            expect(role.translations).all.be.ok;
 
           });
         });
