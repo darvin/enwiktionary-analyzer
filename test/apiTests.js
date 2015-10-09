@@ -44,7 +44,15 @@ describe('API', function() {
       expect(article).to.have.length.above(3000);
       done();
     })
-
+  });
+  it('should fetch rendered article with specified proto language', function (done) {
+    api.fetchArticleForLanguageHtml("*ǵʰew-", "ine-pro", function(err, article) {
+      expect(err).to.not.be.ok;
+      console.log(article);
+      expect(article).to.be.ok;
+      expect(article).to.have.length.above(3000);
+      done();
+    })
   });
   it('should fetch random article', function (done) {
     api.fetchRandomArticle(function(err, article) {
