@@ -60,6 +60,10 @@ describe('Word', function(){
       return '<a>'+wordLink[0]+'/'+wordLink[1]+'</a>';
     });
 
+    var arr = exp.toFragmentsAndWordLinks();
+
+    expect(arr).to.be.eql(["That means something like ",newWordLink("en","experiment"),", and also maybe like", newWordLink("en","mad experiment"), "."]);
+
     expect(str).to.be.ok;
     expect(str).to.be.eql('That means something like <a>en/experiment</a>, and also maybe like<a>en/mad experiment</a>.');
 
@@ -81,6 +85,16 @@ describe('Word', function(){
 
     expect(str).to.be.ok;
     expect(str).to.be.eql('That means something like <a>en/experiment</a>');
+
+    exp = w.lastMeaning().lastRole().addExplanation({
+      context: "science",
+      explanation: "That means something like "
+    });
+
+    expect(exp).to.be.ok;
+    arr = exp.toFragmentsAndWordLinks();
+
+    expect(arr).to.be.eql(["That means something like "]);
 
   })
 
