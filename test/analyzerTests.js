@@ -94,7 +94,10 @@ describe('wiktionary parser', function() {
         expect(w.meanings).to.be.ok;
         expect(w.meanings.length).to.be.equal(2);
       });
-      it('should have anagrams');
+      it('should have anagrams', function() {
+        expect(w.anagrams).to.be.ok;
+        expect(w.anagrams).to.be.eql([ newWordLink('en', 'sett'), newWordLink('en', 'stet')] );
+      });
     	describe('meaning 1', function() {
         var m = null;
         before(function() {
@@ -260,7 +263,10 @@ describe('wiktionary parser', function() {
           { "rhyme": "æmpəl"},
           { "rhyme": "ɑːmpəl"},]);
       });
-      it('should have anagrams');
+      it('should have anagrams', function() {
+        expect(w.anagrams).to.be.ok;
+        expect(w.anagrams).to.be.eql([ newWordLink('en', 'maples')] );
+      });
 
     	it('should have 1 meaning', function() {
         expect(w.meanings).to.be.ok;
