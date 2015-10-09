@@ -1,8 +1,8 @@
-var assert = require('chai').assert;
 var expect = require('chai').expect;
 var prettyjson = require('prettyjson');
 var Word = require('../').word.Word;
-
+var newWordLink = require('../').word.newWordLink;
+var WORDLINK_PLACEHOLDER = require('../').word.WORDLINK_PLACEHOLDER;
 
 
 describe('Word', function(){
@@ -36,5 +36,52 @@ describe('Word', function(){
     expect(w.lastMeaning()).to.be.ok;
 
   });
+
+  it('should have proper explanation', function() {
+    var w = new Word('en', 'sample');
+    expect(w.toObject().word).to.be.eql(['en', 'sample']);
+    w.addMeaning();
+    w.lastMeaning().addRole();
+    var exp = w.lastMeaning().lastRole().addExplanation({
+      context: "science",
+      explanation: "That means something like "+WORDLINK_PLACEHOLDER+", and also maybe like"+WORDLINK_PLACEHOLDER+"."
+    });
+    exp.addMentionedWord(newWordLink('en','experiment'));
+    exp.addMentionedWord(newWordLink('en','mad experiment'));
+
+    expect(exp).to.be.ok;
+
+    exp.addUsage({
+      usage:"sample usage",
+      type:"book"
+    });
+
+    var str = exp.mapMentionedWords(function(wordLink) {
+      return '<a>'+wordLink[0]+'/'+wordLink[1]+'</a>';
+    });
+
+    expect(str).to.be.ok;
+    expect(str).to.be.eql('That means something like <a>en/experiment</a>, and also maybe like<a>en/mad experiment</a>.');
+
+
+
+    exp = w.lastMeaning().lastRole().addExplanation({
+      context: "science",
+      explanation: "That means something like "+WORDLINK_PLACEHOLDER
+    });
+    exp.addMentionedWord(newWordLink('en','experiment'));
+
+    expect(exp).to.be.ok;
+
+
+
+    var str = exp.mapMentionedWords(function(wordLink) {
+      return '<a>'+wordLink[0]+'/'+wordLink[1]+'</a>';
+    });
+
+    expect(str).to.be.ok;
+    expect(str).to.be.eql('That means something like <a>en/experiment</a>');
+
+  })
 
 });
