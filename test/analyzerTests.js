@@ -298,6 +298,12 @@ describe('wiktionary parser', function() {
           before(function() {
             role = m.roles[0];
           });
+          it('should have explanations', function() {
+            role.explanations.length.should.be.equal(6);
+            role.explanations.should.include.something.that.eql({ explanation: ' A {{%%wl%%}} of anything taken or presented for inspection, or shown as evidence of the quality of the whole; a {{%%wl%%}}; as, goods are often purchased by samples.\n',
+              mentionedWords: [ [ 'en', 'part' ], [ 'en', 'specimen' ] ],
+              usages: [ { usage: ' "I design this but for a sample of what I hope more fully to discuss."  -Woodward.' } ] });
+          });
 
           it('should have synonyms', function() {
             expect(role).to.have.property('synonyms');
