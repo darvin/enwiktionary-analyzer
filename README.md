@@ -7,3 +7,4 @@
 # Wiktionary Analyzer
 
 Analyzes English Wiktionary
+
