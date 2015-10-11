@@ -8,3 +8,12 @@
 
 Analyzes English Wiktionary
 
+
+
+<!---
+begin example
+-->
+
+<!---
+end example
+-->

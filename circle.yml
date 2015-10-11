@@ -16,4 +16,4 @@ test:
     - npm run test_long
     - istanbul cover node_modules/mocha/bin/_mocha
     - bash <(curl -s https://codecov.io/bash)
-    - codeclimate-test-reporter < lcov.info
+    - codeclimate-test-reporter < coverage/lcov.info
