@@ -7,3 +7,6 @@ deployment:
 test:
   post:
     - npm run test_long
+    - istanbul cover node_modules/mocha/bin/_mocha
+    - bash <(curl -s https://codecov.io/bash)
+
