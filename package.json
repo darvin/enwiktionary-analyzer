@@ -10,7 +10,7 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha test/",
     "test_long": "./node_modules/.bin/mocha test_long/",
-    "prepublish": "./scripts/generate_languages.js"
+    "prepublish": "./scripts/generate_languages.js && ./scripts/generate_readme.js"
   },
   "author": "",
   "license": "ISC",
