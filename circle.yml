@@ -7,4 +7,3 @@ deployment:
 test:
   post:
     - npm run test_long
-    - npm run coveralls
