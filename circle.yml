@@ -10,6 +10,7 @@ dependencies:
     - npm install istanbul
     - npm install codeclimate-test-reporter
     - npm install publish
+
 test:
   post:
     - npm run test_long
