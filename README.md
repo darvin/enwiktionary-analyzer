@@ -14,9 +14,9 @@ Analyzes English Wiktionary
 var wiktAnalyzer = require('enwiktionary-analyzer');
 var articleName = "test";
 wiktAnalyzer.api.fetchArticle(articleName, function(err, article) {
-    wiktAnalyzer.analyzer.parseArticle(articleName, article, function(err, result) {
-        var englishArticle = article.en;
-        console.log(englishArticle);
+    wiktAnalyzer.analyzer.parseArticle(articleName, article, function(err, parsedArticle) {
+        var parsedEnglishWord = preprocess(parsedArticle.en);
+        console.log(parsedEnglishWord);
     });
 });
 ```
