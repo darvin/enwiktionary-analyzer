@@ -8,6 +8,7 @@
     "url": "https://github.com/darvin/enwiktionary-analyzer.git"
   },
   "scripts": {
+    "2npm": "publish",
     "test": "./node_modules/.bin/mocha test/",
     "tests_long": "./node_modules/.bin/mocha test_long/",
     "coveralls": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha test/ --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
@@ -30,6 +31,7 @@
     "istanbul": "^0.3.21",
     "mocha": "^2.3.3",
     "mocha-lcov-reporter": "^1.0.0",
-    "prettyjson": "^1.1.3"
+    "prettyjson": "^1.1.3",
+    "publish": "^0.5.0"
   }
 }
