@@ -8,7 +8,7 @@
     "url": "https://github.com/darvin/enwiktionary-analyzer.git"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha test/",
+    "test": "./node_modules/.bin/mocha --reporter mocha-circleci-reporter test/",
     "test_long": "./node_modules/.bin/mocha test_long/",
     "prepublish": "./scripts/generate_languages.js && ./scripts/generate_readme.js"
   },
@@ -27,6 +27,7 @@
     "chai": "^3.3.0",
     "chai-things": "^0.2.0",
     "mocha": "^2.3.3",
+    "mocha-circleci-reporter": "0.0.1",
     "prettyjson": "^1.1.3"
   }
 }
