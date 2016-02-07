@@ -6,7 +6,7 @@ var api = require('../').api;
 
 
 describe('API', function() {
-  this.timeout(6000);
+  this.timeout(16000);
   it('should fetch languages', function (done) {
     api.fetchLanguages(function(err, languages) {
       expect(err).to.not.be.ok;
